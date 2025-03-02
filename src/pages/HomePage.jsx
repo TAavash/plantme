@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Ground from "./Ground";
-import Seed from "./Seed";
-import Leaf from "./Leaf";
-import Bud from "./Bud";
-import Steam from "./Steam";
-import Flower from "./Flower";
+import Ground from "../components/Ground";
+import Seed from "../components/stages/Seed";
+import Leaf from "../components/stages/Leaf";
+import Bud from "../components/stages/Bud";
+import Steam from "../components/stages/Steam";
+import Flower from "../components/stages/Flower";
 
 const HomePage = () => {
   const [stage, setStage] = useState(0);
@@ -27,11 +27,11 @@ const HomePage = () => {
       </div>
 
       <div>
-        {stage === 0 && <Seed />}
+        {/* {stage === 0 && <Seed />}
         {stage === 1 && <Bud />}
         {stage === 2 && <Leaf />}
         {stage === 3 && <Steam />}
-        {stage === 4 && <Flower />}
+        {stage === 4 && <Flower />} */}
       </div>
 
       <Ground />

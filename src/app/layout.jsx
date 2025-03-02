@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Plant Me",
-  description: "your plant representation",
+  description: "Your plant representation",
 };
 
 export default function RootLayout({ children }) {
