@@ -1,3 +1,4 @@
+import Chatbox from "@/pages/Chatbox";
 import Contact from "@/pages/Contact";
 import HomePage from "@/pages/HomePage";
 import LowPage from "@/pages/LowPage";
@@ -19,6 +20,7 @@ const page = () => {
       <div className="snap-start w-screen h-screen">
         <Contact/>
       </div>
+      <Chatbox/>
     </div>
   );
 };
