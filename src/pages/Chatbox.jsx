@@ -137,7 +137,7 @@ const Chatbox = () => {
       </div>
 
       {isOpen && (
-        <div className="fixed bottom-[80px] right-[2vw] w-80 h-[350px] sm:h-[450px] max-w-[90%] md:h-[450px] bg-gray-100 rounded-lg shadow-lg flex flex-col">
+        <div className="fixed bottom-[50px] right-10 w-80 h-[350px] sm:h-[450px] max-w-[90%] md:h-[450px] bg-gray-100 rounded-lg shadow-lg flex flex-col">
           <div
             className="bg-gradient-to-r from-green-500 via-green-600 to-[#FAD5A5] 
                  text-white p-3 flex justify-between items-center rounded-t-lg"
