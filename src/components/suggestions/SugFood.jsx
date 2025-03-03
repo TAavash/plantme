@@ -10,7 +10,7 @@ const SugFood = () => {
         <h2 className="flex h-fit text-xl font-medium">
           Food Suggestions:
         </h2>
-        <h2 className="flex flex-col h-full w-full text-justify p-2 text-lg">
+        <h2 className="flex flex-col h-full w-full p-2 text-lg">
           <li>Have more healthy foods the plant is withering.</li>
           <li>Push in some greens in your diet.</li>
         </h2>

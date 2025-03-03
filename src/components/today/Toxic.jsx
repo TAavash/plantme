@@ -10,7 +10,7 @@ const Toxic = () => {
         <h2 className="flex h-fit text-xl font-medium">
           Your Today’s Toxic Intake:
         </h2>
-        <h2 className="flex flex-col h-full w-full text-justify p-2 text-lg">
+        <h2 className="flex flex-col h-full w-full p-2 text-lg">
           <li>Alcohol</li>
           <li>Tobacco</li>
           <li>Vape</li>

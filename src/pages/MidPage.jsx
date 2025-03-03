@@ -1,4 +1,4 @@
-import Root from "@/components/Root";
+// import Root from "@/components/Root";
 import Food from "@/components/today/Food";
 import Health from "@/components/today/Health";
 import Toxic from "@/components/today/Toxic";

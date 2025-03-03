@@ -8,7 +8,7 @@ const SugToxic = () => {
     >
       <div className="w-[270px] h-[250px] p-4 flex flex-col text-white">
         <h2 className="flex h-fit text-xl font-medium">Toxic Suggestions:</h2>
-        <h2 className="flex flex-col h-full w-full text-justify p-2 text-lg">
+        <h2 className="flex flex-col h-full w-full p-2 text-lg">
           <li>
             You may wanna stop your 3 days alcohol intake the rots are degrading
             and dying.
