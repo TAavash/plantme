@@ -16,7 +16,7 @@ const Contact = () => {
           <p className="my-6 text-center text-lg text-white/80">
             Please contact me directly at{" "}
             <span
-              className="bg-gradient-to-r from-red-300 via-slate-500 to-purple-500 
+              className="bg-gradient-to-r from-green-500 via-green-600 to-[#FAD5A5] 
                 bg-clip-text tracking-tight text-transparent animate-gradient"
             >
               aavashlopchan@gmail.com
