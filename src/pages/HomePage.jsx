@@ -23,7 +23,7 @@ const HomePage = () => {
   return (
     <div className="w-screen h-screen bg-white flex flex-col relative">
       <div className="w-full flex items-center justify-center">
-        <h1 className="mt-10 z-20 p-10 text-7xl">PLANT ME</h1>
+        <h1 className="mt-10 z-20 p-10 font-inknut text-7xl">PLANT ME</h1>
       </div>
 
       <div>

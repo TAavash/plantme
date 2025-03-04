@@ -9,7 +9,7 @@ const LowPage = () => {
     <div className="w-screen h-screen bg-[#3B1C0A] flex flex-col relative p-2">
       <LowGround/>
       <div className="w-full flex items-center justify-center">
-        <h1 className="mt-10 z-20 p-10 text-white text-7xl">Daily Suggestions</h1>
+        <h1 className="mt-10 z-20 p-10 font-inknut text-white text-7xl">Daily Suggestions</h1>
       </div>
       <div className="flex flex-col gap-10">
         <div className="flex justify-evenly">

@@ -11,7 +11,7 @@ const MidPage = () => {
         <Root />
       </div> */}
       <div className="w-full flex items-center justify-center">
-        <h1 className="mt-10 z-20 p-10 text-white text-7xl">PLANT ME</h1>
+        <h1 className="mt-10 z-20 p-10 text-white font-inknut text-7xl">PLANT ME</h1>
       </div>
       <div className="flex flex-col gap-10">
         <div className="flex justify-evenly">
