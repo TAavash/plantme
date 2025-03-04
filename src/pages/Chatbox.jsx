@@ -1,6 +1,5 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-// import { BsSendFill } from "react-icons/bs";
 
 const Chatbox = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -148,15 +147,17 @@ const Chatbox = () => {
                 width={38}
                 height={38}
                 alt="Logo"
-                className="rounded-full"
+                className="rounded-full bg-white"
               />
               <div>
-                <h4 className="text-lg font-semibold">Aavash Tamang</h4>
+                <h4 className="text-lg font-semibold cursor-default">
+                  Aavash Tamang
+                </h4>
                 <p className="text-sm">Software Engineer</p>
               </div>
             </div>
             <button
-              className="text-xl text-black"
+              className="text-2xl text-black cursor-pointer"
               onClick={() => setIsOpen(false)}
             >
               &times;
