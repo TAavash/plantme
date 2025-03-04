@@ -150,10 +150,9 @@ const Chatbox = () => {
                 className="rounded-full bg-white"
               />
               <div>
-                <h4 className="text-lg font-semibold cursor-default">
-                  Aavash Tamang
-                </h4>
-                <p className="text-sm">Software Engineer</p>
+                <h4 className="text-lg font-semibold cursor-default">PLANT ME</h4>
+                <p className="text-sm">Your plant representative</p>
+
               </div>
             </div>
             <button
@@ -196,7 +195,7 @@ const Chatbox = () => {
                 }}
               />
               <button
-                className="bg-gray-900 text-white p-2 rounded-lg"
+                className="bg-gray-900 text-white p-2 rounded-lg cursor-pointer"
                 onClick={handleSendMessage}
               >
                 SEND
