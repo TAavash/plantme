@@ -66,7 +66,7 @@ const Contact = () => {
 
           <div className="text-center tracking-tighter mt-6">
             <p className="my-2 text-white">Nepal</p>
-            <p className="my-2 text-white">977-9876543210</p>
+            <p className="my-2 text-white">977-9812211534</p>
             <a
               href="mailto:aavashlopchan@gmail.com"
               className="border-b text-white hover:text-gray-300 hover:underline"

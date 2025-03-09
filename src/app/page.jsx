@@ -1,8 +1,8 @@
-import Chatbox from "@/pages/Chatbox";
-import Contact from "@/pages/Contact";
-import HomePage from "@/pages/HomePage";
-import LowPage from "@/pages/LowPage";
-import MidPage from "@/pages/MidPage";
+import Chatbox from "../pages/Chatbox";
+import Contact from "../pages/Contact";
+import HomePage from "../pages/HomePage";
+import LowPage from "../pages/LowPage";
+import MidPage from "../pages/MidPage";
 import React from "react";
 
 const page = () => {
@@ -18,9 +18,9 @@ const page = () => {
         <LowPage />
       </div>
       <div className="snap-start w-screen h-screen">
-        <Contact/>
+        <Contact />
       </div>
-      <Chatbox/>
+      <Chatbox />
     </div>
   );
 };

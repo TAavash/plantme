@@ -121,7 +121,7 @@ const Chatbox = () => {
   return (
     <div className="relative z-[5000]">
       <div
-        className={`fixed bottom-[50px] right-10 bg-white rounded-full shadow-md shadow-neutral-600 cursor-pointer hover:scale-[1.15] ${
+        className={`fixed bottom-[50px] right-10 bg-white rounded-full border-8 border-green-500 shadow-md shadow-neutral-600 cursor-pointer hover:scale-[1.15] ${
           isOpen ? "hidden" : "flex"
         }`}
         onClick={() => setIsOpen(true)}
@@ -150,9 +150,10 @@ const Chatbox = () => {
                 className="rounded-full bg-white"
               />
               <div>
-                <h4 className="text-lg font-semibold cursor-default">PLANT ME</h4>
+                <h4 className="text-lg font-semibold cursor-default">
+                  PLANT ME
+                </h4>
                 <p className="text-sm">Your plant representative</p>
-
               </div>
             </div>
             <button
