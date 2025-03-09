@@ -1,4 +1,4 @@
-import Chatbox from "../pages/Chatbox";
+import Chatbox from "../components/Chatbox";
 import Contact from "../pages/Contact";
 import HomePage from "../pages/HomePage";
 import LowPage from "../pages/LowPage";
