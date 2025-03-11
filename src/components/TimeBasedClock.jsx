@@ -11,34 +11,41 @@ export default function TimeBasedClock() {
   const [manualTime, setManualTime] = useState(""); // Always reflects current time
   const clockRef = useRef(null);
   const isDragging = useRef(false);
+  const intervalRef = useRef(null);
 
-  // Auto-update time every second in automatic mode
+  // Auto-update time every second
+  const startClock = () => {
+    clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      setTime((prevTime) => new Date(prevTime.getTime() + 1000));
+    }, 1000);
+  };
+
   useEffect(() => {
     if (isAutoTime) {
+      clearInterval(intervalRef.current);
       const interval = setInterval(() => {
         setTime(new Date());
       }, 1000);
       return () => clearInterval(interval);
+    } else {
+      startClock();
     }
   }, [isAutoTime]);
 
-  // Update theme based on current time
   useEffect(() => {
     const hour = time.getHours();
     setTheme(hour >= 6 && hour < 18 ? "light" : "dark");
   }, [time, setTheme]);
 
-  // Sync manual time input when switching from automatic to manual
   useEffect(() => {
     if (!isAutoTime) {
-      setManualTime(time.toTimeString().slice(0, 5)); // Update manual input with latest automatic time
+      setManualTime(time.toTimeString().slice(0, 5));
     }
   }, [isAutoTime, time]);
 
-  // Get rotation for clock hands
   const getRotation = (unit, max) => (unit / max) * 360;
 
-  // Handle manual dragging of the minute hand
   const handleMouseMove = (e) => {
     if (!isDragging.current || !clockRef.current || isAutoTime) return;
     const rect = clockRef.current.getBoundingClientRect();
@@ -53,7 +60,7 @@ export default function TimeBasedClock() {
     newTime.setMinutes(minutes);
     newTime.setSeconds(0);
     setTime(newTime);
-    setManualTime(newTime.toTimeString().slice(0, 5)); // Sync manual input
+    setManualTime(newTime.toTimeString().slice(0, 5));
   };
 
   const handleMouseUp = () => {
@@ -68,7 +75,6 @@ export default function TimeBasedClock() {
     window.addEventListener("mouseup", handleMouseUp);
   };
 
-  // Handle manual time input
   const handleManualTimeChange = (e) => {
     setManualTime(e.target.value);
     const [hours, minutes] = e.target.value.split(":").map(Number);
@@ -79,6 +85,7 @@ export default function TimeBasedClock() {
       newTime.setMinutes(minutes);
       newTime.setSeconds(0);
       setTime(newTime);
+      startClock();
     }
   };
 
@@ -88,7 +95,7 @@ export default function TimeBasedClock() {
         onClick={() => {
           setIsAutoTime((prev) => !prev);
           if (!isAutoTime) {
-            setTime(new Date()); // Reset to real-time when switching back
+            setTime(new Date());
           }
         }}
         className="mb-4 px-4 py-2 bg-blue-500 text-white rounded-lg shadow-lg hover:bg-blue-600"
@@ -113,9 +120,7 @@ export default function TimeBasedClock() {
           ref={clockRef}
           className="relative w-64 h-64 border-4 border-gray-400 rounded-full bg-gradient-to-br from-blue-200 to-sky-500 dark:from-gray-800 dark:to-black shadow-2xl"
         >
-          {/* Clock Hands */}
           <div className="absolute w-full h-full flex items-center justify-center">
-            {/* Hour Hand */}
             <div
               className="absolute w-1 h-20 bg-gray-900 dark:bg-gray-100 origin-bottom"
               style={{
@@ -124,7 +129,6 @@ export default function TimeBasedClock() {
                 }deg)`,
               }}
             />
-            {/* Minute Hand - Draggable */}
             <div
               className="absolute w-1 h-28 bg-yellow-400 origin-bottom cursor-pointer"
               style={{
@@ -137,7 +141,6 @@ export default function TimeBasedClock() {
             />
           </div>
 
-          {/* Close Button */}
           <button
             onClick={() => setIsExpanded(false)}
             className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full"
@@ -145,7 +148,6 @@ export default function TimeBasedClock() {
             ✖
           </button>
 
-          {/* Manual Time Input */}
           {!isAutoTime && (
             <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2">
               <input
