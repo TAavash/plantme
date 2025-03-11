@@ -8,12 +8,12 @@ export default function TimeBasedClock() {
   const [time, setTime] = useState(new Date());
   const [isExpanded, setIsExpanded] = useState(false);
   const [isAutoTime, setIsAutoTime] = useState(true);
-  const [manualTime, setManualTime] = useState(""); // Always reflects current time
+  const [manualTime, setManualTime] = useState("");
   const clockRef = useRef(null);
   const isDragging = useRef(false);
   const intervalRef = useRef(null);
 
-  // Auto-update time every second
+  // Auto-update time
   const startClock = () => {
     clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
@@ -90,19 +90,7 @@ export default function TimeBasedClock() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4">
-      <button
-        onClick={() => {
-          setIsAutoTime((prev) => !prev);
-          if (!isAutoTime) {
-            setTime(new Date());
-          }
-        }}
-        className="mb-4 px-4 py-2 bg-blue-500 text-white rounded-lg shadow-lg hover:bg-blue-600"
-      >
-        {isAutoTime ? "Switch to Manual Time" : "Switch to Auto Time"}
-      </button>
-
+    <div className="flex flex-col items-center justify-center min-h-screen p-4 z-[100]">
       {!isExpanded ? (
         <div
           className="relative w-20 h-20 dark:bg-gray-700 rounded-full flex items-center justify-center cursor-pointer shadow-lg"
@@ -121,54 +109,73 @@ export default function TimeBasedClock() {
           </h2>
         </div>
       ) : (
-        <div
-          ref={clockRef}
-          className="relative w-90 h-90 rounded-full bg-gradient-to-br from-blue-200 to-sky-500 dark:from-gray-800 dark:to-black shadow-2xl"
-          style={{
-            backgroundImage: "url(/assets/clock/clock.png)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
-          <div className="absolute w-full h-full flex items-center justify-center">
-            <div
-              className="absolute w-1 h-20 bg-gray-900 dark:bg-gray-100 origin-bottom"
-              style={{
-                transform: `translateY(-50%) rotate(${
-                  (time.getHours() % 12) * 30 + time.getMinutes() * 0.5
-                }deg)`,
-              }}
-            />
-            <div
-              className="absolute w-1 h-28 bg-yellow-400 origin-bottom cursor-pointer"
-              style={{
-                transform: `translateY(-50%) rotate(${getRotation(
-                  time.getMinutes(),
-                  60
-                )}deg)`,
-              }}
-              onMouseDown={!isAutoTime ? handleMouseDown : undefined}
-            />
-          </div>
-
-          <button
-            onClick={() => setIsExpanded(false)}
-            className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full"
+        <>
+          <div
+            ref={clockRef}
+            className="relative w-90 h-90 rounded-full bg-gradient-to-br from-green-200 to-sky-500 dark:from-gray-800 dark:to-black shadow-2xl"
+            style={{
+              backgroundImage:
+                theme === "dark"
+                  ? "url(/assets/clock/clock-dark.png)"
+                  : "url(/assets/clock/clock.png)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
           >
-            ✖
-          </button>
-
-          {!isAutoTime && (
-            <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2">
-              <input
-                type="time"
-                value={manualTime}
-                onChange={handleManualTimeChange}
-                className="px-3 py-1 text-lg border border-gray-300 rounded-lg shadow-md focus:outline-none dark:bg-gray-800 dark:text-white"
+            <div className="absolute w-full h-full flex items-center justify-center">
+              <div
+                className="absolute w-1 h-20 bg-gray-900 dark:bg-gray-100 origin-bottom"
+                style={{
+                  transform: `translateY(-50%) rotate(${
+                    (time.getHours() % 12) * 30 + time.getMinutes() * 0.5
+                  }deg)`,
+                }}
+              />
+              <div
+                className="absolute w-1 h-28 bg-yellow-400 origin-bottom cursor-pointer"
+                style={{
+                  transform: `translateY(-50%) rotate(${getRotation(
+                    time.getMinutes(),
+                    60
+                  )}deg)`,
+                }}
+                onMouseDown={!isAutoTime ? handleMouseDown : undefined}
               />
             </div>
-          )}
-        </div>
+            <button
+              onClick={() => setIsExpanded(false)}
+              className="absolute top-2 right-2 px-2 py-1 bg-red-500 text-white rounded-full shadow-lg hover:bg-red-600"
+            >
+              ✖
+            </button>
+
+            {!isAutoTime && (
+              <div className="absolute bottom-28 left-1/2 transform -translate-x-1/2">
+                <input
+                  type="time"
+                  value={manualTime}
+                  onChange={handleManualTimeChange}
+                  className="px-3 py-1 text-lg border border-gray-300 rounded-lg shadow-md focus:outline-none dark:bg-gray-800 dark:text-white"
+                />
+              </div>
+            )}
+          </div>
+
+          {/* Buttons outside the clock frame */}
+          <div className="flex justify-center mt-6 gap-4">
+            <button
+              onClick={() => {
+                setIsAutoTime((prev) => !prev);
+                if (!isAutoTime) {
+                  setTime(new Date());
+                }
+              }}
+              className="px-4 py-2 bg-green-500 text-white rounded-lg shadow-lg hover:bg-green-600"
+            >
+              {isAutoTime ? "Switch to Manual Time" : "Switch to Auto Time"}
+            </button>
+          </div>
+        </>
       )}
     </div>
   );
