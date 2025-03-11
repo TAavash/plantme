@@ -105,7 +105,12 @@ export default function TimeBasedClock() {
 
       {!isExpanded ? (
         <div
-          className="relative w-20 h-20 bg-blue-400 dark:bg-gray-700 rounded-full flex items-center justify-center cursor-pointer shadow-lg"
+          className="relative w-20 h-20 dark:bg-gray-700 rounded-full flex items-center justify-center cursor-pointer shadow-lg"
+          style={{
+            backgroundImage: "url(/assets/clock/clock.png)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
           onClick={() => setIsExpanded(true)}
         >
           <h2 className="text-sm font-bold text-gray-900 dark:text-gray-100">
@@ -118,7 +123,12 @@ export default function TimeBasedClock() {
       ) : (
         <div
           ref={clockRef}
-          className="relative w-64 h-64 border-4 border-gray-400 rounded-full bg-gradient-to-br from-blue-200 to-sky-500 dark:from-gray-800 dark:to-black shadow-2xl"
+          className="relative w-90 h-90 rounded-full bg-gradient-to-br from-blue-200 to-sky-500 dark:from-gray-800 dark:to-black shadow-2xl"
+          style={{
+            backgroundImage: "url(/assets/clock/clock.png)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
         >
           <div className="absolute w-full h-full flex items-center justify-center">
             <div
