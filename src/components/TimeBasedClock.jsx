@@ -44,6 +44,24 @@ export default function TimeBasedClock() {
     }
   }, [isAutoTime, time]);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (clockRef.current && !clockRef.current.contains(event.target)) {
+        setIsExpanded(false);
+      }
+    };
+
+    if (isExpanded) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isExpanded]);
+
   const getRotation = (unit, max) => (unit / max) * 360;
 
   const handleMouseMove = (e) => {
