@@ -47,7 +47,7 @@ export default function TimeBasedClock() {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (clockRef.current && !clockRef.current.contains(event.target)) {
-        setIsExpanded(false);
+        setTimeout(() => setIsExpanded(false), 150); // Add delay
       }
     };
 
@@ -140,7 +140,19 @@ export default function TimeBasedClock() {
               backgroundPosition: "center",
             }}
           >
+            
             <div className="absolute w-full h-full flex items-center justify-center">
+            <button
+              onClick={() => {
+                setIsAutoTime((prev) => !prev);
+                if (!isAutoTime) {
+                  setTime(new Date());
+                }
+              }}
+              className="px-4 py-2 bg-green-500 text-white rounded-lg shadow-lg hover:bg-green-600"
+            >
+              {isAutoTime ? "Switch to Manual Time" : "Switch to Auto Time"}
+            </button>
               <div
                 className="absolute w-1 h-20 bg-gray-900 dark:bg-gray-100 origin-bottom"
                 style={{
@@ -179,8 +191,7 @@ export default function TimeBasedClock() {
             )}
           </div>
 
-          {/* Buttons outside the clock frame */}
-          <div className="flex justify-center mt-2 gap-4">
+          {/* <div className="flex justify-center mt-2 gap-4">
             <button
               onClick={() => {
                 setIsAutoTime((prev) => !prev);
@@ -192,7 +203,7 @@ export default function TimeBasedClock() {
             >
               {isAutoTime ? "Switch to Manual Time" : "Switch to Auto Time"}
             </button>
-          </div>
+          </div> */}
         </div>
       )}
     </div>
