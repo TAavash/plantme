@@ -47,12 +47,11 @@ const ExpandableActionPanel = ({ onWatering }) => {
             />
           </div>
           <div className="absolute bottom-0 left-0">
-            <div className="flex cursor-pointer items-center justify-center w-20 h-20 rounded-full bg-white border-5 border-blue-500">
-              <FaCloudShowersWater
-                className="text-blue-500"
-                size={36}
-                onClick={() => onWatering()}
-              />
+            <div
+              className="flex cursor-pointer items-center justify-center w-20 h-20 rounded-full bg-white border-5 border-blue-500"
+              onClick={() => onWatering()}
+            >
+              <FaCloudShowersWater className="text-blue-500" size={36} />
             </div>
           </div>
         </div>

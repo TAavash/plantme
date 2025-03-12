@@ -173,7 +173,7 @@ export default function TimeBasedClock() {
             </div>
             <button
               onClick={() => setIsExpanded(false)}
-              className="absolute top-2 right-2 px-2 py-1 bg-red-500 text-white rounded-full shadow-lg hover:bg-red-600"
+              className="absolute top-2 right-2 w-8 h-8 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600"
             >
               ✖
             </button>
