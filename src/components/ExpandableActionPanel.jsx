@@ -4,7 +4,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { FaTools } from "react-icons/fa";
 import { FaCloudShowersWater } from "react-icons/fa6";
 import TimeBasedClock from "../components/TimeBasedClock";
-import WateringAnimation from "../components/WateringAnimation";
 
 const ExpandableActionPanel = ({ onWatering }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,11 +47,11 @@ const ExpandableActionPanel = ({ onWatering }) => {
             />
           </div>
           <div className="absolute bottom-0 left-0">
-            <div className="flex items-center justify-center w-20 h-20 rounded-full bg-white border-5 border-blue-500">
+            <div className="flex cursor-pointer items-center justify-center w-20 h-20 rounded-full bg-white border-5 border-blue-500">
               <FaCloudShowersWater
                 className="text-blue-500"
                 size={36}
-                onClick={() => onWatering && onWatering()}
+                onClick={() => onWatering()}
               />
             </div>
           </div>
@@ -60,7 +59,7 @@ const ExpandableActionPanel = ({ onWatering }) => {
 
         <button
           onClick={() => setIsOpen((prev) => !prev)}
-          className="flex items-center justify-center mt-6 w-20 h-20 p-4 border-8 border-yellow-500 bg-white text-black rounded-full shadow-lg hover:scale-[1.10]"
+          className="flex cursor-pointer items-center justify-center mt-6 w-20 h-20 p-4 border-8 border-yellow-500 bg-white text-black rounded-full shadow-lg hover:scale-[1.10]"
         >
           <FaTools className="text-yellow-600" size={36} />
         </button>

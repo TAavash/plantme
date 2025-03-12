@@ -9,7 +9,7 @@ import Steam from "../components/stages/Steam";
 import Flower from "../components/stages/Flower";
 import ThemeIcon from "../components/ThemeIcon";
 import ExpandableActionPanel from "../components/ExpandableActionPanel";
-import WateringAnimation from "../components/WateringAnimation"
+import WateringAnimation from "../components/WateringAnimation";
 
 const HomePage = () => {
   const [stage, setStage] = useState(0);
@@ -29,8 +29,14 @@ const HomePage = () => {
         <h1 className="mt-10 z-20 p-10 font-inknut text-7xl">PLANT ME</h1>
       </div>
       <ThemeIcon />
-      
-      {isWatering && <WateringAnimation direction="left" />}
+
+      {isWatering && (
+        <WateringAnimation
+          direction="left"
+          isPlaying={isWatering}
+          onComplete={() => setIsWatering(false)}
+        />
+      )}
       <ExpandableActionPanel onWatering={() => setIsWatering(true)} />
 
       <div>
