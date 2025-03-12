@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
@@ -38,18 +36,18 @@ const ExpandableActionPanel = () => {
 
       <div className="fixed bottom-[50px] left-10 z-50" ref={panelRef}>
         <div
-          className={`relative flex flex-col items-center space-y-4 transition-all duration-300 transform ${
-            isOpen
-              ? "translate-y-0 opacity-100 scale-100"
-              : "translate-y-4 opacity-0 scale-90 pointer-events-none"
-          }`}
+          className={`relative transition-all duration-300 ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
         >
-          <TimeBasedClock
-            isExpanded={isClockExpanded}
-            setIsExpanded={setIsClockExpanded}
-          />
-          <div className="flex items-center justify-center w-20 h-20 rounded-full bg-white border-5 border-blue-500">
-            <FaCloudShowersWater className="text-blue-500" size={36} />
+          <div className="absolute bottom-24 left-0">
+            <TimeBasedClock
+              isExpanded={isClockExpanded}
+              setIsExpanded={setIsClockExpanded}
+            />
+          </div>
+          <div className="absolute bottom-0 left-0">
+            <div className="flex items-center justify-center w-20 h-20 rounded-full bg-white border-5 border-blue-500">
+              <FaCloudShowersWater className="text-blue-500" size={36} />
+            </div>
           </div>
         </div>
 
