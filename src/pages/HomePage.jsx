@@ -26,9 +26,9 @@ const HomePage = () => {
       <div className="w-full flex items-center justify-center">
         <h1 className="mt-10 z-20 p-10 font-inknut text-7xl">PLANT ME</h1>
       </div>
-      <TimeBasedClock className="z-100" />
+      {/* <TimeBasedClock /> */}
 
-      {/* <div>
+      <div>
         {stage === 0 && <Seed />}
         {stage === 1 && <Bud />}
         {stage === 2 && <Leaf />}
@@ -36,7 +36,7 @@ const HomePage = () => {
         {stage === 4 && <Flower />}
       </div>
 
-      <Ground /> */}
+      <Ground />
     </div>
   );
 };

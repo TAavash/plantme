@@ -90,12 +90,12 @@ export default function TimeBasedClock() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4 z-[100]">
+    <div className="flex flex-col items-center justify-center z-[40]">
       {!isExpanded ? (
         <div
           className="relative w-20 h-20 dark:bg-gray-700 rounded-full flex items-center justify-center cursor-pointer shadow-lg"
           style={{
-            backgroundImage: "url(/assets/clock/clock.png)",
+            backgroundImage: "url(/assets/clock/clock-no-hand.png)",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -109,7 +109,7 @@ export default function TimeBasedClock() {
           </h2>
         </div>
       ) : (
-        <>
+        <div className="flex flex-col w-120 h-120 shadow-lg rounded-full justify-center items-center">
           <div
             ref={clockRef}
             className="relative w-90 h-90 rounded-full bg-gradient-to-br from-green-200 to-sky-500 dark:from-gray-800 dark:to-black shadow-2xl"
@@ -162,7 +162,7 @@ export default function TimeBasedClock() {
           </div>
 
           {/* Buttons outside the clock frame */}
-          <div className="flex justify-center mt-6 gap-4">
+          <div className="flex justify-center mt-2 gap-4">
             <button
               onClick={() => {
                 setIsAutoTime((prev) => !prev);
@@ -175,7 +175,7 @@ export default function TimeBasedClock() {
               {isAutoTime ? "Switch to Manual Time" : "Switch to Auto Time"}
             </button>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

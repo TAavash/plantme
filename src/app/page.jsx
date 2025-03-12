@@ -1,3 +1,4 @@
+import ExpandableActionPanel from "../components/ExpandableActionPanel";
 import Chatbox from "../components/Chatbox";
 import Contact from "../pages/Contact";
 import HomePage from "../pages/HomePage";
@@ -20,6 +21,7 @@ const page = () => {
       <div className="snap-start w-screen h-screen">
         <Contact />
       </div>
+      <ExpandableActionPanel/>
       <Chatbox />
     </div>
   );
