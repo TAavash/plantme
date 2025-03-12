@@ -4,8 +4,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { FaTools } from "react-icons/fa";
 import { FaCloudShowersWater } from "react-icons/fa6";
 import TimeBasedClock from "../components/TimeBasedClock";
+import WateringAnimation from "../components/WateringAnimation";
 
-const ExpandableActionPanel = () => {
+const ExpandableActionPanel = ({ onWatering }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isClockExpanded, setIsClockExpanded] = useState(false);
   const panelRef = useRef(null);
@@ -36,7 +37,9 @@ const ExpandableActionPanel = () => {
 
       <div className="fixed bottom-[50px] left-10 z-50" ref={panelRef}>
         <div
-          className={`relative transition-all duration-300 ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+          className={`relative transition-all duration-300 ${
+            isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
         >
           <div className="absolute bottom-24 left-0">
             <TimeBasedClock
@@ -46,7 +49,11 @@ const ExpandableActionPanel = () => {
           </div>
           <div className="absolute bottom-0 left-0">
             <div className="flex items-center justify-center w-20 h-20 rounded-full bg-white border-5 border-blue-500">
-              <FaCloudShowersWater className="text-blue-500" size={36} />
+              <FaCloudShowersWater
+                className="text-blue-500"
+                size={36}
+                onClick={() => onWatering && onWatering()}
+              />
             </div>
           </div>
         </div>

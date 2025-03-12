@@ -8,9 +8,12 @@ import Bud from "../components/stages/Bud";
 import Steam from "../components/stages/Steam";
 import Flower from "../components/stages/Flower";
 import ThemeIcon from "../components/ThemeIcon";
+import ExpandableActionPanel from "../components/ExpandableActionPanel";
+import WateringAnimation from "../components/WateringAnimation"
 
 const HomePage = () => {
   const [stage, setStage] = useState(0);
+  const [isWatering, setIsWatering] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -25,7 +28,10 @@ const HomePage = () => {
       <div className="w-full flex items-center justify-center">
         <h1 className="mt-10 z-20 p-10 font-inknut text-7xl">PLANT ME</h1>
       </div>
-      <ThemeIcon/>
+      <ThemeIcon />
+      
+      {isWatering && <WateringAnimation direction="left" />}
+      <ExpandableActionPanel onWatering={() => setIsWatering(true)} />
 
       <div>
         {stage === 0 && <Seed />}
