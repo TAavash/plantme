@@ -10,10 +10,12 @@ import Flower from "../components/stages/Flower";
 import ThemeIcon from "../components/ThemeIcon";
 import ExpandableActionPanel from "../components/ExpandableActionPanel";
 import WateringAnimation from "../components/WateringAnimation";
+import WeatherControlPanel from "../components/WeatherControlPanel";
 
 const HomePage = () => {
   const [stage, setStage] = useState(0);
   const [isWatering, setIsWatering] = useState(false);
+  const [isWeatherPanelOpen, setIsWeatherPanelOpen] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -37,7 +39,17 @@ const HomePage = () => {
           onComplete={() => setIsWatering(false)}
         />
       )}
-      <ExpandableActionPanel onWatering={() => setIsWatering(true)} />
+      {isWeatherPanelOpen && (
+        <WeatherControlPanel
+          onWeatherChange={(weather) => console.log("Weather:", weather)}
+          onClose={() => setIsWeatherPanelOpen(false)}
+        />
+      )}
+
+      <ExpandableActionPanel
+        onWatering={() => setIsWatering(true)}
+        onSunnyWeather={() => setIsWeatherPanelOpen(true)}
+      />
 
       <div>
         {stage === 0 && <Seed />}

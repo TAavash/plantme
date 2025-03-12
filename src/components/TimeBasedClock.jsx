@@ -119,7 +119,7 @@ export default function TimeBasedClock() {
           }}
           onClick={() => setIsExpanded(true)}
         >
-          <h2 className="text-sm font-bold text-gray-900 dark:text-gray-100">
+          <h2 className="text-sm font-bold text-green-600 dark:text-gray-100">
             {time.toLocaleTimeString([], {
               hour: "2-digit",
               minute: "2-digit",
@@ -127,7 +127,7 @@ export default function TimeBasedClock() {
           </h2>
         </div>
       ) : (
-        <div className="flex flex-col mx-auto w-120 h-120 shadow-lg rounded-full justify-center items-center">
+        <div className="fixed inset-0 backdrop-blur-sm flex flex-col mx-auto w-120 h-120 shadow-lg rounded-full justify-center items-center">
           <div
             ref={clockRef}
             className="relative w-90 h-90 rounded-full bg-gradient-to-br from-green-200 to-sky-500 dark:from-gray-800 dark:to-black shadow-2xl"

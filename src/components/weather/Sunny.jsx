@@ -2,11 +2,11 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import Watering from "../../public/assets/animation/Watering.json";
+import SunnyDay from "../../public/assets/animation/Sunny.json";
 
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
-const WateringAnimation = ({ direction, isPlaying, onComplete }) => {
+const Sunny = ({ direction, isPlaying, onComplete }) => {
   const [playAnimation, setPlayAnimation] = useState(isPlaying);
   const [animationKey, setAnimationKey] = useState(0);
 
@@ -27,7 +27,7 @@ const WateringAnimation = ({ direction, isPlaying, onComplete }) => {
       >
         <Lottie
           key={animationKey} // Force Lottie to reset
-          animationData={Watering}
+          animationData={SunnyDay}
           loop={false}
           onComplete={() => {
             setPlayAnimation(false);
@@ -39,4 +39,4 @@ const WateringAnimation = ({ direction, isPlaying, onComplete }) => {
   );
 };
 
-export default WateringAnimation;
+export default Sunny;

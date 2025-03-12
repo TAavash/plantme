@@ -2,10 +2,11 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { FaTools } from "react-icons/fa";
-import { FaCloudShowersWater } from "react-icons/fa6";
+import { GiWateringCan } from "react-icons/gi";
+import { TiWeatherPartlySunny } from "react-icons/ti";
 import TimeBasedClock from "../components/TimeBasedClock";
 
-const ExpandableActionPanel = ({ onWatering }) => {
+const ExpandableActionPanel = ({ onWatering, onSunnyWeather }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isClockExpanded, setIsClockExpanded] = useState(false);
   const panelRef = useRef(null);
@@ -40,18 +41,28 @@ const ExpandableActionPanel = ({ onWatering }) => {
             isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
         >
-          <div className="absolute bottom-24 left-0">
+          <div className="absolute bottom-48 left-0">
             <TimeBasedClock
               isExpanded={isClockExpanded}
               setIsExpanded={setIsClockExpanded}
             />
           </div>
+
+          <div className="absolute bottom-24 left-0">
+            <div
+              className="flex cursor-pointer items-center justify-center w-20 h-20 rounded-full bg-white border-5 border-yellow-500"
+              onClick={() => onSunnyWeather()}
+            >
+              <TiWeatherPartlySunny className="text-yellow-500" size={36} />
+            </div>
+          </div>
+
           <div className="absolute bottom-0 left-0">
             <div
               className="flex cursor-pointer items-center justify-center w-20 h-20 rounded-full bg-white border-5 border-blue-500"
               onClick={() => onWatering()}
             >
-              <FaCloudShowersWater className="text-blue-500" size={36} />
+              <GiWateringCan className="text-blue-500" size={36} />
             </div>
           </div>
         </div>
