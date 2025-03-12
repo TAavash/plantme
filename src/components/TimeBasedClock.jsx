@@ -13,23 +13,6 @@ export default function TimeBasedClock() {
   const isDragging = useRef(false);
   const intervalRef = useRef(null);
 
-  // Close clock on outside click
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (clockRef.current && !clockRef.current.contains(event.target)) {
-        setIsExpanded(false);
-      }
-    };
-
-    if (isExpanded) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isExpanded]);
-
   // Auto-update time
   const startClock = () => {
     clearInterval(intervalRef.current);
@@ -126,11 +109,9 @@ export default function TimeBasedClock() {
           </h2>
         </div>
       ) : (
-        <div
-          ref={clockRef}
-          className="flex flex-col w-120 h-120 shadow-lg rounded-full justify-center items-center"
-        >
+        <div className="flex flex-col w-120 h-120 shadow-lg rounded-full justify-center items-center">
           <div
+            ref={clockRef}
             className="relative w-90 h-90 rounded-full bg-gradient-to-br from-green-200 to-sky-500 dark:from-gray-800 dark:to-black shadow-2xl"
             style={{
               backgroundImage:
@@ -166,6 +147,32 @@ export default function TimeBasedClock() {
               className="absolute top-2 right-2 px-2 py-1 bg-red-500 text-white rounded-full shadow-lg hover:bg-red-600"
             >
               ✖
+            </button>
+
+            {!isAutoTime && (
+              <div className="absolute bottom-28 left-1/2 transform -translate-x-1/2">
+                <input
+                  type="time"
+                  value={manualTime}
+                  onChange={handleManualTimeChange}
+                  className="px-3 py-1 text-lg border border-gray-300 rounded-lg shadow-md focus:outline-none dark:bg-gray-800 dark:text-white"
+                />
+              </div>
+            )}
+          </div>
+
+          {/* Buttons outside the clock frame */}
+          <div className="flex justify-center mt-2 gap-4">
+            <button
+              onClick={() => {
+                setIsAutoTime((prev) => !prev);
+                if (!isAutoTime) {
+                  setTime(new Date());
+                }
+              }}
+              className="px-4 py-2 bg-green-500 text-white rounded-lg shadow-lg hover:bg-green-600"
+            >
+              {isAutoTime ? "Switch to Manual Time" : "Switch to Auto Time"}
             </button>
           </div>
         </div>
