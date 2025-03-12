@@ -47,7 +47,7 @@ export default function TimeBasedClock() {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (clockRef.current && !clockRef.current.contains(event.target)) {
-        setTimeout(() => setIsExpanded(false), 150); // Add delay
+        setTimeout(() => setIsExpanded(false), 200); // Add delay
       }
     };
 
@@ -127,7 +127,7 @@ export default function TimeBasedClock() {
           </h2>
         </div>
       ) : (
-        <div className="flex flex-col w-120 h-120 shadow-lg rounded-full justify-center items-center">
+        <div className="flex flex-col mx-auto w-120 h-120 shadow-lg rounded-full justify-center items-center">
           <div
             ref={clockRef}
             className="relative w-90 h-90 rounded-full bg-gradient-to-br from-green-200 to-sky-500 dark:from-gray-800 dark:to-black shadow-2xl"
@@ -140,19 +140,18 @@ export default function TimeBasedClock() {
               backgroundPosition: "center",
             }}
           >
-            
             <div className="absolute w-full h-full flex items-center justify-center">
-            <button
-              onClick={() => {
-                setIsAutoTime((prev) => !prev);
-                if (!isAutoTime) {
-                  setTime(new Date());
-                }
-              }}
-              className="px-4 py-2 bg-green-500 text-white rounded-lg shadow-lg hover:bg-green-600"
-            >
-              {isAutoTime ? "Switch to Manual Time" : "Switch to Auto Time"}
-            </button>
+              <button
+                onClick={() => {
+                  setIsAutoTime((prev) => !prev);
+                  if (!isAutoTime) {
+                    setTime(new Date());
+                  }
+                }}
+                className="px-4 py-2 bg-green-500 text-white rounded-lg shadow-lg hover:bg-green-600"
+              >
+                {isAutoTime ? "Switch to Manual Time" : "Switch to Auto Time"}
+              </button>
               <div
                 className="absolute w-1 h-20 bg-gray-900 dark:bg-gray-100 origin-bottom"
                 style={{
@@ -190,20 +189,6 @@ export default function TimeBasedClock() {
               </div>
             )}
           </div>
-
-          {/* <div className="flex justify-center mt-2 gap-4">
-            <button
-              onClick={() => {
-                setIsAutoTime((prev) => !prev);
-                if (!isAutoTime) {
-                  setTime(new Date());
-                }
-              }}
-              className="px-4 py-2 bg-green-500 text-white rounded-lg shadow-lg hover:bg-green-600"
-            >
-              {isAutoTime ? "Switch to Manual Time" : "Switch to Auto Time"}
-            </button>
-          </div> */}
         </div>
       )}
     </div>
