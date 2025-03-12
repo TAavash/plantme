@@ -7,8 +7,7 @@ import Leaf from "../components/stages/Leaf";
 import Bud from "../components/stages/Bud";
 import Steam from "../components/stages/Steam";
 import Flower from "../components/stages/Flower";
-import ThemeToggle from "../components/ThemeToggle";
-import TimeBasedClock from "../components/TimeBasedClock";
+import ThemeIcon from "../components/ThemeIcon";
 
 const HomePage = () => {
   const [stage, setStage] = useState(0);
@@ -26,7 +25,7 @@ const HomePage = () => {
       <div className="w-full flex items-center justify-center">
         <h1 className="mt-10 z-20 p-10 font-inknut text-7xl">PLANT ME</h1>
       </div>
-      {/* <TimeBasedClock /> */}
+      <ThemeIcon/>
 
       <div>
         {stage === 0 && <Seed />}
