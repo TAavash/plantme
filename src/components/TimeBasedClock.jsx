@@ -76,35 +76,33 @@ export default function TimeBasedClock() {
 
   const handleMouseMove = (e) => {
     if (!isDragging.current || !clockRef.current || isAutoTime) return;
-  
+
     const rect = clockRef.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
-  
+
     const angle =
-      Math.atan2(e.clientY - centerY, e.clientX - centerX) * (180 / Math.PI) + 90;
+      Math.atan2(e.clientY - centerY, e.clientX - centerX) * (180 / Math.PI) +
+      90;
     const degrees = angle < 0 ? 360 + angle : angle;
-  
+
     const minutes = Math.round(degrees / 6);
-  
+
     const newTime = new Date(time);
     newTime.setMinutes(minutes);
     newTime.setSeconds(0);
-  
-    // 🟢 Only adjust the hour offset on full-circle transitions
-    if (!isAutoTime) {
-      if (prevMinuteAngle > 300 && degrees < 60) {
-        setManualHourOffset((prev) => prev + 1); // Full forward turn
-      } else if (prevMinuteAngle < 60 && degrees > 300) {
-        setManualHourOffset((prev) => prev - 1); // Full backward turn
-      }
+
+    // 🟢 Adjust hour only on full-circle minute rotations
+    if (prevMinuteAngle > 300 && degrees < 60) {
+      newTime.setHours(newTime.getHours() + 1); // Forward hour on full turn
+    } else if (prevMinuteAngle < 60 && degrees > 300) {
+      newTime.setHours(newTime.getHours() - 1); // Backward hour on full turn
     }
-  
+
     setPrevMinuteAngle(degrees);
     setTime(newTime);
     setManualTime(newTime.toTimeString().slice(0, 5));
   };
-  
 
   const handleMouseUp = () => {
     isDragging.current = false;
@@ -186,8 +184,8 @@ export default function TimeBasedClock() {
                 className="absolute w-1 h-20 bg-gray-900 dark:bg-gray-100 origin-bottom"
                 style={{
                   transform: `translateY(-50%) rotate(${
-                    (time.getHours() % 12) * 30 + time.getMinutes() * 0.5 + manualHourOffset * 30
-                  }deg)`
+                    (time.getHours() % 12) * 30 + time.getMinutes() * 0.5
+                  }deg)`,
                 }}
               />
               <div

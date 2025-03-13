@@ -13,6 +13,7 @@ import Rainy from "../components/weather/Rainy";
 import Stormy from "../components/weather/Stormy";
 import Snowy from "../components/weather/Snowy";
 import ExpandableActionPanel from "../components/ExpandableActionPanel";
+import InputExpandableActionPanel from "../components/InputExpandableActionPanel";
 import WateringAnimation from "../components/WateringAnimation";
 import WeatherControlPanel from "../components/WeatherControlPanel";
 
@@ -67,6 +68,8 @@ const HomePage = () => {
         onWeather={() => setIsWeatherPanelOpen(true)}
       />
 
+      <InputExpandableActionPanel />
+
       <div>
         {stage === 0 && <Seed />}
         {stage === 1 && <Bud />}
@@ -81,4 +84,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-  
