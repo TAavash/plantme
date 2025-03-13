@@ -8,6 +8,10 @@ import Bud from "../components/stages/Bud";
 import Steam from "../components/stages/Steam";
 import Flower from "../components/stages/Flower";
 import ThemeIcon from "../components/ThemeIcon";
+import Sunny from "../components/weather/Sunny";
+import Rainy from "../components/weather/Rainy";
+import Stormy from "../components/weather/Stormy";
+import Snowy from "../components/weather/Snowy";
 import ExpandableActionPanel from "../components/ExpandableActionPanel";
 import WateringAnimation from "../components/WateringAnimation";
 import WeatherControlPanel from "../components/WeatherControlPanel";
@@ -15,7 +19,13 @@ import WeatherControlPanel from "../components/WeatherControlPanel";
 const HomePage = () => {
   const [stage, setStage] = useState(0);
   const [isWatering, setIsWatering] = useState(false);
+  const [currentWeather, setCurrentWeather] = useState(null);
   const [isWeatherPanelOpen, setIsWeatherPanelOpen] = useState(false);
+
+  const handleWeatherChange = (weather) => {
+    setCurrentWeather(weather);
+    setTimeout(() => setCurrentWeather(null), 60000); // Stop animation after 60 seconds
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -39,16 +49,22 @@ const HomePage = () => {
           onComplete={() => setIsWatering(false)}
         />
       )}
+
+      {currentWeather === "sunny" && <Sunny isPlaying={true} />}
+      {currentWeather === "rainy" && <Rainy isPlaying={true} />}
+      {currentWeather === "stormy" && <Stormy isPlaying={true} />}
+      {currentWeather === "snowy" && <Snowy isPlaying={true} />}
+
       {isWeatherPanelOpen && (
         <WeatherControlPanel
-          onWeatherChange={(weather) => console.log("Weather:", weather)}
+          onWeatherChange={(weather) => handleWeatherChange(weather)}
           onClose={() => setIsWeatherPanelOpen(false)}
         />
       )}
 
       <ExpandableActionPanel
         onWatering={() => setIsWatering(true)}
-        onSunnyWeather={() => setIsWeatherPanelOpen(true)}
+        onWeather={() => setIsWeatherPanelOpen(true)}
       />
 
       <div>
@@ -65,3 +81,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+  

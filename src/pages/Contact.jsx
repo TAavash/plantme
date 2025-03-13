@@ -1,5 +1,5 @@
 "use client";
-import Magma from "@/components/Magma";
+import Magma from "../components/Magma";
 import React from "react";
 
 const Contact = () => {

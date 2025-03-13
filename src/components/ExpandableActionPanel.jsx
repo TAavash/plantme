@@ -6,7 +6,7 @@ import { GiWateringCan } from "react-icons/gi";
 import { TiWeatherPartlySunny } from "react-icons/ti";
 import TimeBasedClock from "../components/TimeBasedClock";
 
-const ExpandableActionPanel = ({ onWatering, onSunnyWeather }) => {
+const ExpandableActionPanel = ({ onWatering, onWeather }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isClockExpanded, setIsClockExpanded] = useState(false);
   const panelRef = useRef(null);
@@ -51,7 +51,7 @@ const ExpandableActionPanel = ({ onWatering, onSunnyWeather }) => {
           <div className="absolute bottom-24 left-0">
             <div
               className="flex cursor-pointer items-center justify-center w-20 h-20 rounded-full bg-white border-5 border-yellow-500"
-              onClick={() => onSunnyWeather()}
+              onClick={() => onWeather()}
             >
               <TiWeatherPartlySunny className="text-yellow-500" size={36} />
             </div>

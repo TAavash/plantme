@@ -2,41 +2,33 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import SunnyDay from "../../public/assets/animation/Sunny.json";
+import SunnyDay from "../../../public/assets/animation/Sunny.json";
 
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
-const Sunny = ({ direction, isPlaying, onComplete }) => {
-  const [playAnimation, setPlayAnimation] = useState(isPlaying);
-  const [animationKey, setAnimationKey] = useState(0);
+const SunnyAnimation = ({ isPlaying = true }) => {
+  const [isVisible, setIsVisible] = useState(true);
 
-  // Sync playAnimation with parent state
   useEffect(() => {
-    if (isPlaying) {
-      setPlayAnimation(true);
-      setAnimationKey((prevKey) => prevKey + 1); // Force re-render
-    }
-  }, [isPlaying]);
+    const timer = setTimeout(() => {
+      setIsVisible(false);
+    }, 60000); // 60 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!isVisible) return null;
 
   return (
-    playAnimation && (
-      <div
-        className={`absolute top-0 ${
-          direction === "left" ? "left-0" : "right-0 transform scale-x-[-1]"
-        } w-[500px]`}
-      >
-        <Lottie
-          key={animationKey} // Force Lottie to reset
-          animationData={SunnyDay}
-          loop={false}
-          onComplete={() => {
-            setPlayAnimation(false);
-            if (onComplete) onComplete();
-          }}
-        />
-      </div>
-    )
+    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <Lottie 
+        animationData={SunnyDay} 
+        loop={true} 
+        autoplay={true} 
+        style={{ width: "100vw", height: "100vh" }}
+      />
+    </div>
   );
 };
 
-export default Sunny;
+export default SunnyAnimation;

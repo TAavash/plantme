@@ -1,16 +1,19 @@
 import React, { useState, useRef, useEffect } from "react";
-import { FaSun, FaCloudRain, FaSnowflake, FaBolt, FaCloud } from "react-icons/fa";
+import {
+  FaSun,
+  FaCloudRain,
+  FaSnowflake,
+  FaBolt,
+  FaCloud,
+} from "react-icons/fa";
 
 const WeatherControlPanel = ({ onWeatherChange, onClose }) => {
-  const [activeWeather, setActiveWeather] = useState(null);
   const panelRef = useRef(null);
 
   const handleWeatherClick = (weather) => {
-    setActiveWeather(weather);
     onWeatherChange(weather);
   };
 
-  // Handle outside clicks
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (panelRef.current && !panelRef.current.contains(event.target)) {
@@ -35,8 +38,6 @@ const WeatherControlPanel = ({ onWeatherChange, onClose }) => {
         ref={panelRef}
         className="relative w-[400px] h-[400px] shadow-lg backdrop-blur-sm rounded-full flex items-center justify-center"
       >
-        <div className="absolute w-[300px] h-[300px] bg-gradient-to-br from-blue-500 to-blue-300 rounded-full shadow-xl"></div>
-
         {weatherOptions.map((option, index) => {
           const angle = (index / weatherOptions.length) * 2 * Math.PI;
           const x = Math.cos(angle) * 140;
