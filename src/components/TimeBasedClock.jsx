@@ -9,12 +9,10 @@ export default function TimeBasedClock() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isAutoTime, setIsAutoTime] = useState(true);
   const [manualTime, setManualTime] = useState("");
-  const [manualHourOffset, setManualHourOffset] = useState(0);
   const getRotation = (unit, max) => (unit / max) * 360;
   const [prevMinuteAngle, setPrevMinuteAngle] = useState(
     getRotation(time.getMinutes(), 60)
   );
-  const [totalMinuteRotation, setTotalMinuteRotation] = useState(0);
   const clockRef = useRef(null);
   const isDragging = useRef(false);
   const intervalRef = useRef(null);

@@ -6,7 +6,11 @@ import { IoFastFood } from "react-icons/io5";
 import { GiCigarette } from "react-icons/gi";
 import { MdHealthAndSafety } from "react-icons/md";
 
-const InputExpandableActionPanel = ({ onWatering, onWeather }) => {
+const InputExpandableActionPanel = ({
+  onFoodClick,
+  onToxicClick,
+  onHealthClick,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const panelRef = useRef(null);
 
@@ -18,10 +22,10 @@ const InputExpandableActionPanel = ({ onWatering, onWeather }) => {
             isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
         >
-            <div className="absolute top-72 left-0">
+          <div className="absolute top-72 left-0">
             <div
               className="flex cursor-pointer items-center justify-center w-20 h-20 p-4 border-8 border-white bg-green-500 rounded-full shadow-lg hover:scale-[1.10]"
-              onClick={() => onWeather()}
+              onClick={onHealthClick}
             >
               <MdHealthAndSafety className="text-white" size={36} />
             </div>
@@ -30,7 +34,7 @@ const InputExpandableActionPanel = ({ onWatering, onWeather }) => {
           <div className="absolute top-48 left-0">
             <div
               className="flex cursor-pointer items-center justify-center w-20 h-20 p-4 border-8 border-white bg-green-500 rounded-full shadow-lg hover:scale-[1.10]"
-              onClick={() => onWeather()}
+              onClick={onToxicClick}
             >
               <GiCigarette className="text-white" size={36} />
             </div>
@@ -39,7 +43,7 @@ const InputExpandableActionPanel = ({ onWatering, onWeather }) => {
           <div className="absolute top-24 left-0">
             <div
               className="flex cursor-pointer items-center justify-center w-20 h-20 p-4 border-8 border-white bg-green-500 rounded-full shadow-lg hover:scale-[1.10]"
-              onClick={() => onWatering()}
+              onClick={onFoodClick}
             >
               <IoFastFood className="text-white" size={36} />
             </div>
@@ -48,7 +52,9 @@ const InputExpandableActionPanel = ({ onWatering, onWeather }) => {
 
         <button
           onClick={() => setIsOpen((prev) => !prev)}
-          className="flex cursor-pointer items-center justify-center mb-6 w-20 h-20 p-4 border-8 border-white bg-green-500 rounded-full shadow-lg hover:scale-[1.10]"
+          className={`flex cursor-pointer items-center justify-center mb-6 w-20 h-20 p-4 border-8 border-white rounded-full shadow-lg hover:scale-[1.10] ${
+            isOpen ? "bg-yellow-500" : "bg-green-500"
+          }`}
         >
           <PiPottedPlantBold className="text-white" size={36} />
         </button>

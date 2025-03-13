@@ -12,6 +12,9 @@ import Sunny from "../components/weather/Sunny";
 import Rainy from "../components/weather/Rainy";
 import Stormy from "../components/weather/Stormy";
 import Snowy from "../components/weather/Snowy";
+import FoodInput from "../components/InputPanel/FoodInput";
+import ToxicInput from "../components/InputPanel/ToxicInput";
+import HealthInput from "../components/InputPanel/HealthInput";
 import ExpandableActionPanel from "../components/ExpandableActionPanel";
 import InputExpandableActionPanel from "../components/InputExpandableActionPanel";
 import WateringAnimation from "../components/WateringAnimation";
@@ -22,6 +25,12 @@ const HomePage = () => {
   const [isWatering, setIsWatering] = useState(false);
   const [currentWeather, setCurrentWeather] = useState(null);
   const [isWeatherPanelOpen, setIsWeatherPanelOpen] = useState(false);
+  const [activeInput, setActiveInput] = useState(null);
+
+  const handleOpenInput = (inputType) => {
+    setActiveInput((prev) => (prev === inputType ? null : inputType));
+    // Clicking again closes the current input
+  };
 
   const handleWeatherChange = (weather) => {
     setCurrentWeather(weather);
@@ -68,7 +77,23 @@ const HomePage = () => {
         onWeather={() => setIsWeatherPanelOpen(true)}
       />
 
-      <InputExpandableActionPanel />
+      <InputExpandableActionPanel
+        onFoodClick={() => handleOpenInput("food")}
+        onHealthClick={() => handleOpenInput("health")}
+        onToxicClick={() => handleOpenInput("toxic")}
+      />
+
+      {activeInput === "food" && (
+        <FoodInput onClose={() => setActiveInput(null)} />
+      )}
+
+      {activeInput === "toxic" && (
+        <ToxicInput onClose={() => setActiveInput(null)} />
+      )}
+
+      {activeInput === "health" && (
+        <HealthInput onClose={() => setActiveInput(null)} />
+      )}
 
       <div>
         {stage === 0 && <Seed />}
