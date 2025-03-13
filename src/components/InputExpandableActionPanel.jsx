@@ -16,7 +16,7 @@ const InputExpandableActionPanel = ({
 
   return (
     <>
-      <div className="fixed top-[50px] left-10 z-50" ref={panelRef}>
+      <div className="absolute top-[50px] left-10 z-50" ref={panelRef}>
         <div
           className={`relative transition-all duration-300 ${
             isOpen ? "opacity-100" : "opacity-0 pointer-events-none"

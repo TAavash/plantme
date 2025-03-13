@@ -39,9 +39,9 @@ const ExpandableActionPanel = ({ onWatering, onWeather }) => {
         <div className="flex items-center">
           <button
             onClick={() => setIsOpen((prev) => !prev)}
-            className="flex cursor-pointer items-center justify-center mr-6 w-20 h-20 p-4 border-8 border-yellow-500 bg-white text-black rounded-full shadow-lg hover:scale-[1.10]"
+            className="flex cursor-pointer items-center justify-center mr-6 w-20 h-20 p-4 border-8 border-white bg-yellow-500 text-black rounded-full shadow-lg hover:scale-[1.10]"
           >
-            <FaTools className="text-yellow-600" size={36} />
+            <FaTools className="text-white" size={36} />
           </button>
 
           {isOpen && (
