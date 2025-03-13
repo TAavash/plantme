@@ -36,43 +36,41 @@ const ExpandableActionPanel = ({ onWatering, onWeather }) => {
       )}
 
       <div className="fixed bottom-[50px] left-10 z-50" ref={panelRef}>
-        <div
-          className={`relative transition-all duration-300 ${
-            isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
-        >
-          <div className="absolute bottom-48 left-0">
-            <TimeBasedClock
-              isExpanded={isClockExpanded}
-              setIsExpanded={setIsClockExpanded}
-            />
-          </div>
+        <div className="flex items-center">
+          <button
+            onClick={() => setIsOpen((prev) => !prev)}
+            className="flex cursor-pointer items-center justify-center mr-6 w-20 h-20 p-4 border-8 border-yellow-500 bg-white text-black rounded-full shadow-lg hover:scale-[1.10]"
+          >
+            <FaTools className="text-yellow-600" size={36} />
+          </button>
 
-          <div className="absolute bottom-24 left-0">
+          {isOpen && (
             <div
-              className="flex cursor-pointer items-center justify-center w-20 h-20 rounded-full bg-white border-5 border-yellow-500"
-              onClick={() => onWeather()}
+              className={`flex items-center space-x-6 transition-all duration-300 ${
+                isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+              }`}
             >
-              <TiWeatherPartlySunny className="text-yellow-500" size={36} />
-            </div>
-          </div>
+              <TimeBasedClock
+                isExpanded={isClockExpanded}
+                setIsExpanded={setIsClockExpanded}
+              />
 
-          <div className="absolute bottom-0 left-0">
-            <div
-              className="flex cursor-pointer items-center justify-center w-20 h-20 rounded-full bg-white border-5 border-blue-500"
-              onClick={() => onWatering()}
-            >
-              <GiWateringCan className="text-blue-500" size={36} />
+              <div
+                className="flex cursor-pointer items-center justify-center w-20 h-20 rounded-full bg-white border-5 border-yellow-500"
+                onClick={() => onWeather()}
+              >
+                <TiWeatherPartlySunny className="text-yellow-500" size={36} />
+              </div>
+
+              <div
+                className="flex cursor-pointer items-center justify-center w-20 h-20 rounded-full bg-white border-5 border-blue-500"
+                onClick={() => onWatering()}
+              >
+                <GiWateringCan className="text-blue-500" size={36} />
+              </div>
             </div>
-          </div>
+          )}
         </div>
-
-        <button
-          onClick={() => setIsOpen((prev) => !prev)}
-          className="flex cursor-pointer items-center justify-center mt-6 w-20 h-20 p-4 border-8 border-yellow-500 bg-white text-black rounded-full shadow-lg hover:scale-[1.10]"
-        >
-          <FaTools className="text-yellow-600" size={36} />
-        </button>
       </div>
     </>
   );
