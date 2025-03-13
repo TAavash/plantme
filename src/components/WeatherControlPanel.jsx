@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useRef, useEffect } from "react";
 import {
   FaSun,
@@ -10,16 +12,20 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const WeatherControlPanel = ({ onWeatherChange, onClose }) => {
   const panelRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(true);
 
   const handleWeatherClick = (weather) => {
     onWeatherChange(weather);
+    setIsVisible(false);
+    setTimeout(onClose, 300);
   };
 
   // Close panel on outside click
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (panelRef.current && !panelRef.current.contains(event.target)) {
-        setTimeout(() => onClose(), 100);
+        setIsVisible(false);
+        setTimeout(() => onClose(), 300);
       }
     };
 
@@ -41,33 +47,41 @@ const WeatherControlPanel = ({ onWeatherChange, onClose }) => {
         className="relative w-[400px] h-[400px] shadow-lg backdrop-blur-sm rounded-full flex items-center justify-center"
       >
         <AnimatePresence>
-          {weatherOptions.map((option, index) => {
-            const angle = (index / weatherOptions.length) * 2 * Math.PI;
-            const x = Math.cos(angle) * 140;
-            const y = Math.sin(angle) * 140;
+          {isVisible &&
+            weatherOptions.map((option, index) => {
+              const angle = (index / weatherOptions.length) * 2 * Math.PI;
+              const x = Math.cos(angle) * 140;
+              const y = Math.sin(angle) * 140;
 
-            return (
-              <motion.div
-                key={option.id}
-                initial={{ scale: 0, x: 0, y: 0 }}
-                animate={{ scale: 1, x, y }}
-                exit={{ scale: 0, x: 0, y: 0 }}
-                transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                className={`absolute p-4 rounded-full border-4 border-blue-200 shadow-lg cursor-pointer bg-white ${option.color}`}
-                onClick={() => handleWeatherClick(option.id)}
-              >
-                {option.icon}
-              </motion.div>
-            );
-          })}
+              return (
+                <motion.div
+                  key={option.id}
+                  initial={{ scale: 0, x: 0, y: 0 }}
+                  animate={{ scale: 1, x, y }}
+                  exit={{ scale: 0, x: 0, y: 0 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                  className={`absolute p-4 rounded-full border-4 border-blue-200 shadow-lg cursor-pointer bg-white ${option.color}`}
+                  onClick={() => handleWeatherClick(option.id)}
+                >
+                  {option.icon}
+                </motion.div>
+              );
+            })}
         </AnimatePresence>
 
-        <div
+        <motion.div
+          initial={{ scale: 1 }}
+          animate={{ scale: 1 }}
+          exit={{ scale: 0 }}
+          transition={{ type: "spring", stiffness: 260, damping: 20 }}
           className="absolute w-20 h-20 flex items-center justify-center bg-white border-4 border-blue-200 rounded-full shadow-lg cursor-pointer"
-          onClick={onClose}
+          onClick={() => {
+            setIsVisible(false);
+            setTimeout(onClose, 300);
+          }}
         >
           <FaCloud size={40} className="text-yellow-500" />
-        </div>
+        </motion.div>
       </div>
     </div>
   );
