@@ -12,6 +12,7 @@ export default function TimeBasedClock() {
   const clockRef = useRef(null);
   const isDragging = useRef(false);
   const intervalRef = useRef(null);
+  const clickInsideRef = useRef(false);
 
   // Auto-update time
   const startClock = () => {
@@ -46,9 +47,14 @@ export default function TimeBasedClock() {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (clockRef.current && !clockRef.current.contains(event.target)) {
-        setTimeout(() => setIsExpanded(false), 200); // Add delay
+      if (
+        clockRef.current &&
+        !clockRef.current.contains(event.target) &&
+        !clickInsideRef.current
+      ) {
+        setTimeout(() => setIsExpanded(false), 200);
       }
+      clickInsideRef.current = false;
     };
 
     if (isExpanded) {
@@ -109,26 +115,30 @@ export default function TimeBasedClock() {
 
   return (
     <div className="flex flex-col items-center justify-center z-[40]">
-      {!isExpanded ? (
-        <div
-          className="relative w-20 h-20 dark:bg-gray-700 rounded-full flex items-center justify-center cursor-pointer shadow-lg"
-          style={{
-            backgroundImage: "url(/assets/clock/clock-no-hand.png)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-          onClick={() => setIsExpanded(true)}
-        >
-          <h2 className="text-sm font-bold text-green-600 dark:text-gray-100">
-            {time.toLocaleTimeString([], {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}
-          </h2>
-        </div>
-      ) : (
+      <div
+        className={`relative w-20 h-20 dark:bg-gray-700 rounded-full flex items-center justify-center cursor-pointer shadow-lg ${
+          isExpanded ? "z-30" : "z-40"
+        }`}
+        style={{
+          backgroundImage: "url(/assets/clock/clock-no-hand.png)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+        onClick={() => {
+          clickInsideRef.current = true;
+          setIsExpanded((prev) => !prev);
+        }}
+      >
+        <h2 className="text-sm font-bold text-green-600 dark:text-gray-100">
+          {time.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}
+        </h2>
+      </div>
+      
+      {isExpanded && (
         <div className="fixed inset-0 top-1/2 transform -translate-y-1/2 backdrop-blur-sm flex flex-col mx-auto w-120 h-120 shadow-lg rounded-full justify-center items-center">
-
           <div
             ref={clockRef}
             className="relative w-90 h-90 rounded-full bg-gradient-to-br from-green-200 to-sky-500 dark:from-gray-800 dark:to-black shadow-2xl"
