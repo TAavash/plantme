@@ -5,14 +5,23 @@ import BlockTitle from "./BlockTitle";
 
 const HealthInput = ({ onClose }) => {
   const healthStatus = [
-    "Smoking",
-    "Alcohol",
-    "Cigarettes",
-    "Tobacco",
-    "Cocaine",
-    "Heroin",
-    "vape",
-    "hookah",
+    "Healthy",
+    "Diabetes",
+    "Hypertension (High Blood Pressure)",
+    "Heart Disease",
+    "Stroke",
+    "Asthma",
+    "Tuberculosis",
+    "Pneumonia",
+    "Hepatitis B",
+    "Liver Cirrhosis",
+    "Arthritis",
+    "Osteoporosis",
+    "Epilepsy",
+    "Lung Cancer",
+    "Breast Cancer",
+    "Leukemia",
+    "Degrading",
   ];
 
   const [selectedHealth, setSelectedHealth] = useState([]);
