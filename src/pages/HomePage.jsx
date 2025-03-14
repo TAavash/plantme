@@ -7,6 +7,10 @@ import Leaf from "../components/stages/Leaf";
 import Bud from "../components/stages/Bud";
 import Steam from "../components/stages/Steam";
 import Flower from "../components/stages/Flower";
+import Withering from "../components/stages/Wither/Withering";
+import Withered from "../components/stages/Wither/Withered";
+import FullyWithered from "../components/stages/Wither/FullyWithered";
+import Broken from "../components/stages/Wither/Broken";
 import ThemeIcon from "../components/ThemeIcon";
 import Sunny from "../components/weather/Sunny";
 import Rainy from "../components/weather/Rainy";
@@ -41,6 +45,10 @@ const HomePage = () => {
     const interval = setInterval(() => {
       setStage((prev) => (prev + 1) % 5); // Cycle through 5 stages
     }, 15000); // 75 sec total, 15 sec per stage
+
+    // const interval = setInterval(() => {
+    //   setStage((prev) => (prev + 1) % 9); // Cycle through 5 stages
+    // }, 10000); // 75 sec total, 15 sec per stage
 
     return () => clearInterval(interval);
   }, []);
@@ -101,6 +109,11 @@ const HomePage = () => {
         {stage === 2 && <Leaf />}
         {stage === 3 && <Steam />}
         {stage === 4 && <Flower />}
+
+        {/* {stage === 5 && <Withering />}
+        {stage === 6 && <Withered />}
+        {stage === 7 && <FullyWithered />}
+        {stage === 8 && <Broken />} */}
       </div>
 
       <Ground />
