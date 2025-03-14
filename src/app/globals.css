@@ -16,6 +16,11 @@ html.dark {
   --foreground: #ededed;
 }
 
+html.desert {
+  --background: #FAD5A5;
+  --foreground: #000000;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
