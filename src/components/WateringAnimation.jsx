@@ -21,9 +21,11 @@ const WateringAnimation = ({ direction, isPlaying, onComplete }) => {
   return (
     playAnimation && (
       <div
-        className={`absolute top-0 ${
-          direction === "left" ? "left-0" : "right-0 transform scale-x-[-1]"
-        } w-[500px]`}
+        className={`absolute z-18 top-0 ${
+          direction === "left"
+            ? "left-0 md:left-0 lg:left-1/4"
+            : "right-0 transform scale-x-[-1]"
+        } w-[500px] max-w-full`}
       >
         <Lottie
           key={animationKey} // Force Lottie to reset

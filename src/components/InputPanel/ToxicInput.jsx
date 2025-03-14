@@ -11,8 +11,8 @@ const ToxicInput = ({ onClose }) => {
     "Tobacco",
     "Cocaine",
     "Heroin",
-    "vape",
-    "hookah",
+    "Vape",
+    "Hookah",
   ];
 
   const [selectedToxic, setSelectedToxic] = useState([]);
