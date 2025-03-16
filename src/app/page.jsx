@@ -1,5 +1,6 @@
 // import ExpandableActionPanel from "../components/ExpandableActionPanel";
 import Chatbox from "../components/Chatbox";
+import ChatPrompt from "../components/ChatPrompt";
 import Contact from "../pages/Contact";
 import DesertPage from "../pages/DesertPage";
 import HomePage from "../pages/HomePage";
@@ -24,7 +25,8 @@ const page = () => {
         <Contact />
       </div>
       {/* <ExpandableActionPanel/> */}
-      <Chatbox />
+      {/* <Chatbox /> */}
+      <ChatPrompt />
     </div>
   );
 };
