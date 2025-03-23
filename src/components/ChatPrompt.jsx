@@ -33,7 +33,7 @@ const ChatPrompt = ({ onSendMessage }) => {
   return (
     <div
       ref={chatRef}
-      className={`fixed bottom-10 right-10 flex justify-center transition-all duration-300
+      className={`fixed z-100 bottom-10 right-10 flex justify-center transition-all duration-300
       ${isOpen ? "w-[70%]" : "w-fit"}`}
     >
       {/* Main Chat Bar */}
