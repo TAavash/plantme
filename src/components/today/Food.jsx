@@ -1,22 +1,22 @@
 import React from "react";
 
 const Food = () => {
+  const foodItems = ["Pizza", "MoMo", "Burger", "Rice", "Carrot"];
+
   return (
     <div
-      className="w-[400px] h-[300px] bg-[#3B1C0A] shadow-amber-950 inset-shadow-xl rounded-full 
-  flex items-center justify-center"
+      className="w-full max-w-[400px] bg-[#3B1C0A] shadow-amber-950 rounded-full 
+        flex items-center justify-center p-6 md:p-8 lg:p-10"
     >
-      <div className="w-[270px] h-[250px] p-4 flex flex-col text-white">
-        <h2 className="flex h-fit text-xl font-medium">
+      <div className="w-full text-white">
+        <h2 className="text-xl font-medium text-center">
           Your Today’s Food Intake:
         </h2>
-        <h2 className="flex flex-col h-full w-full p-2 text-lg">
-          <li>Pizza</li>
-          <li>MoMo</li>
-          <li>Burger</li>
-          <li>Rice</li>
-          <li>Carrot</li>
-        </h2>
+        <ul className="mt-3 space-y-2 text-lg text-center">
+          {foodItems.map((food, index) => (
+            <li key={index}>🍽️ {food}</li>
+          ))}
+        </ul>
       </div>
     </div>
   );

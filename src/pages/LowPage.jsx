@@ -8,21 +8,15 @@ import React from "react";
 
 const LowPage = () => {
   return (
-    <div className="w-screen h-screen bg-[#3B1C0A] flex flex-col relative p-2">
+    <div className="relative w-screen min-h-screen bg-[#3B1C0A] flex flex-col items-center p-4 overflow-hidden">
       <LowGround />
-      <div className="w-full flex items-center justify-center">
-        <h1 className="mt-10 z-20 p-10 font-inknut text-white text-7xl">
-          Daily Suggestions
-        </h1>
-      </div>
-      <div className="flex flex-col gap-10">
-        <div className="flex justify-evenly">
-          <SugFood />
-          <SugToxic />
-        </div>
-        <div className="flex items-center justify-center">
-          <SugHealth />
-        </div>
+      <h1 className="mt-20 z-20 text-center font-inknut text-white text-3xl md:text-5xl lg:text-7xl">
+        Daily Suggestions
+      </h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 w-full max-w-[1200px] z-20">
+        <SugFood />
+        <SugToxic />
+        <SugHealth />
       </div>
     </div>
   );

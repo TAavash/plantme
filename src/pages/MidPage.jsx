@@ -1,6 +1,6 @@
 "use client";
 
-// import Root from "@/components/Root";
+import MidGround from "../components/MidGround";
 import Food from "../components/today/Food";
 import Health from "../components/today/Health";
 import Toxic from "../components/today/Toxic";
@@ -8,23 +8,17 @@ import React from "react";
 
 const MidPage = () => {
   return (
-    <div className="w-screen h-screen bg-[#4D2814] flex flex-col relative p-2">
-      {/* <div className="flex w-full items-center justify-center">
-        <Root />
-      </div> */}
-      <div className="w-full flex items-center justify-center">
-        <h1 className="mt-10 z-20 p-10 text-white font-inknut text-7xl">
-          PLANT ME
-        </h1>
-      </div>
-      <div className="flex flex-col gap-10">
-        <div className="flex justify-evenly">
-          <Food />
-          <Toxic />
-        </div>
-        <div className="flex items-center justify-center">
-          <Health />
-        </div>
+    <div className="relative w-screen min-h-screen bg-[#4D2814] flex flex-col items-center p-4 overflow-hidden">
+      <MidGround />
+
+      <h1 className="mt-10 z-20 text-center font-inknut text-white text-3xl md:text-5xl lg:text-7xl">
+        PLANT ME
+      </h1>
+
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 w-full max-w-[1200px] z-20">
+        <Food />
+        <Toxic />
+        <Health />
       </div>
     </div>
   );

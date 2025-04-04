@@ -1,20 +1,22 @@
 import React from "react";
 
 const Toxic = () => {
+  const toxicItems = ["Pizza", "MoMo", "Burger", "Rice", "Carrot"];
+
   return (
     <div
-      className="w-[400px] h-[300px] bg-[#3B1C0A] shadow-amber-950 inset-shadow-xl rounded-full 
-    flex items-center justify-center"
+      className="w-full max-w-[400px] bg-[#3B1C0A] shadow-amber-950 rounded-full 
+        flex items-center justify-center p-6 md:p-8 lg:p-10"
     >
-      <div className="w-[270px] h-[250px] p-4 flex flex-col text-white">
-        <h2 className="flex h-fit text-xl font-medium">
+      <div className="w-full text-white">
+        <h2 className="text-xl font-medium text-center">
           Your Today’s Toxic Intake:
         </h2>
-        <h2 className="flex flex-col h-full w-full p-2 text-lg">
-          <li>Alcohol</li>
-          <li>Tobacco</li>
-          <li>Vape</li>
-        </h2>
+        <ul className="mt-3 space-y-2 text-lg text-center">
+          {toxicItems.map((toxic, index) => (
+            <li key={index}>🍽️ {toxic}</li>
+          ))}
+        </ul>
       </div>
     </div>
   );
